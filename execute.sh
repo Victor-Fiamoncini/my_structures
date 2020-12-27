@@ -1,13 +1,9 @@
 #/bin/bash
 
-read -p 'Enter a script to execute (stack, queue...): ' SCRIPT_FOLDER_NAME
+read -p "Enter a script to execute (array, stack, queue...): " SCRIPT_FOLDER_NAME
 
-case $SCRIPT_FOLDER_NAME in
-  'stack')
-    gcc ./$SCRIPT_FOLDER_NAME/main.c -o ./$SCRIPT_FOLDER_NAME/main
-    ;;
-
-  *)
-    echo 'Script not found'
-    ;;
-esac
+if [ $SCRIPT_FOLDER_NAME == "array" ]; then
+    gcc -o ./$SCRIPT_FOLDER_NAME/main ./$SCRIPT_FOLDER_NAME/main.c && ./$SCRIPT_FOLDER_NAME/main
+else
+    echo "Script not found"
+fi

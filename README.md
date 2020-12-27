@@ -2,7 +2,10 @@
 
 Implementations of some data-structures, only for study purposes, enjoy.
 
-----------
-Released in 2020.
+## How to run (Linux)
+```bash
+$ bash execute.sh # Follow the given instructions...
+```
 
+----------
 By [Victor B. Fiamoncini](https://github.com/Victor-Fiamoncini) ☕️
