@@ -8,14 +8,15 @@ int main()
 {
     linked_list_node *head = malloc(sizeof(linked_list_node));
 
-    populate_linked_list(head, 6);
+    populate_linked_list(head, 3);
 
     add_item_to_the_beginning(&head, 23);
     add_item_to_the_beginning(&head, 44);
 
-    add_item_to_the_end(head, 10);
+    add_item_to_the_end(head, 56);
 
     remove_item_of_the_beginning(&head);
+    remove_item_of_the_end(head);
 
     print_linked_list(head);
 
@@ -78,17 +79,37 @@ void add_item_to_the_beginning(linked_list_node **head, int value_to_add)
 int remove_item_of_the_beginning(linked_list_node **head)
 {
     if (*head == NULL)
-        return EXIT_FAILURE;
+    {
+        return 1;
+    }
 
     linked_list_node *next_item = (*head)->next;
 
     free(*head);
 
     *head = next_item;
+
+    return 0;
 }
 
-int remove_item_of_the_end(linked_list_node **head)
+int remove_item_of_the_end(linked_list_node *head)
 {
+    if (head->next == NULL)
+    {
+        free(head);
+        return 0;
+    }
 
+    linked_list_node *current = head;
+
+    while (current->next->next != NULL)
+    {
+        current = current->next;
+    }
+
+    free(current->next);
+    current->next = NULL;
+
+    return 0;
 }
 
