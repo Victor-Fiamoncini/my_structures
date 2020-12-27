@@ -21,3 +21,6 @@
 - No random access possible
 
 ## Applications
+
+- Suitable where memory is limited
+- Suitable for applications that requires frequent insertion and deletion
