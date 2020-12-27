@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char const *argv[])
+int main()
 {
     int ages[] = {13, 24, 54, 33, 81};
     int agesLength =  sizeof(ages) / sizeof(int);
@@ -8,5 +9,5 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < agesLength; i++)
         printf("Age stored in index %i == %i\n", i, ages[i]);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
