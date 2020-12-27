@@ -1,6 +1,6 @@
 # My Structures
 
-Implementations of some data-structures in C, only for study purposes, enjoy.
+Implementations of some data-structures, only for study purposes, enjoy.
 
 ----------
 Released in 2020.

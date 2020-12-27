@@ -3,10 +3,20 @@
 
 int main()
 {
-  int age = 10;
-  int *pAge = &age;
+    int x = 20;
+    double y = 30.22;
+    char z = 'a';
 
-  printf("Reference: %i | Value: %i", pAge, *pAge);
+    int *pX = &x;
+    double *pY = &y;
+    char *pZ = &z;
 
-  return EXIT_SUCCESS;
+    double sum = *pX + *pY;
+
+    printf("Memory reference: %p | Memory value: %i\n", pX, *pX);
+    printf("Memory reference: %p | Memory value: %f\n", pY, *pY);
+    printf("Memory reference: %p | Memory value: %c\n", pZ, *pZ);
+    printf("%f\n", sum);
+
+    return EXIT_SUCCESS;
 }
