@@ -2,7 +2,7 @@
 
 Implementations of some data-structures, only for study purposes, enjoy.
 
-## How to run (Linux)
+## How to run (Unix)
 ```bash
 $ bash execute.sh
 ```
