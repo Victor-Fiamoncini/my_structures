@@ -1,12 +1,13 @@
 #/bin/bash
 
-read -p "Enter a script to execute (array, stack, queue...): " SCRIPT_FOLDER_NAME
+read -p "Enter a script to execute (array, stack, queue...): " FOLDER_NAME
 
 if
-    [ $SCRIPT_FOLDER_NAME == "array" ] ||
-    [ $SCRIPT_FOLDER_NAME == "linked_list" ];
+    [ $FOLDER_NAME == "array" ] ||
+    [ $FOLDER_NAME == "linked_list" ] ||
+    [ $FOLDER_NAME == "array" ];
 then
-    gcc -o ./$SCRIPT_FOLDER_NAME/main ./$SCRIPT_FOLDER_NAME/main.c && ./$SCRIPT_FOLDER_NAME/main
+    gcc -o ./$FOLDER_NAME/main ./$FOLDER_NAME/main.c && ./$FOLDER_NAME/main
 else
     echo "Script not found"
 fi
