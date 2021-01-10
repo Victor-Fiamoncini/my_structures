@@ -4,36 +4,6 @@
 
 #include "linked_list.h"
 
-int main()
-{
-    linked_list_node *head = malloc(sizeof(linked_list_node));
-
-    populate_linked_list(head, 3);
-
-    add_item_to_the_end(head, 156);
-
-    print_linked_list(head);
-
-    return EXIT_SUCCESS;
-}
-
-void populate_linked_list(linked_list_node *head, int number_of_items)
-{
-    linked_list_node *current = head;
-
-    for (int i = 0; i < number_of_items; i++)
-    {
-        if (current != NULL)
-        {
-            current->value = rand();
-            current->next = malloc(sizeof(linked_list_node));
-        }
-
-        current = current->next;
-    }
-}
-
-
 void print_linked_list(linked_list_node *head)
 {
     linked_list_node *current = head;
@@ -45,7 +15,7 @@ void print_linked_list(linked_list_node *head)
     }
 }
 
-void add_item_to_the_end(linked_list_node *head, int value_to_add)
+void push(linked_list_node *head, int value_to_add)
 {
     linked_list_node *current = head;
 
@@ -54,12 +24,12 @@ void add_item_to_the_end(linked_list_node *head, int value_to_add)
         current = current->next;
     }
 
-    current->value = value_to_add;
     current->next = malloc(sizeof(linked_list_node));
-    current->next = NULL;
+    current->next->value = value_to_add;
+    current->next->next = NULL;
 }
 
-void add_item_to_the_beginning(linked_list_node **head, int value_to_add)
+void unshift(linked_list_node **head, int value_to_add)
 {
     linked_list_node *new_item = malloc(sizeof(linked_list_node));
 
@@ -70,12 +40,10 @@ void add_item_to_the_beginning(linked_list_node **head, int value_to_add)
 }
 
 
-int remove_item_of_the_beginning(linked_list_node **head)
+int shift(linked_list_node **head)
 {
     if (*head == NULL)
-    {
         return 1;
-    }
 
     linked_list_node *next_item = (*head)->next;
 
@@ -86,7 +54,7 @@ int remove_item_of_the_beginning(linked_list_node **head)
     return 0;
 }
 
-int remove_item_of_the_end(linked_list_node *head)
+int pop(linked_list_node *head)
 {
     if (head->next == NULL)
     {
@@ -107,6 +75,20 @@ int remove_item_of_the_end(linked_list_node *head)
     return 0;
 }
 
-int remove_item_by_index(linked_list_node **head, int index_to_remove) {}
+int main()
+{
+    linked_list_node *head = malloc(sizeof(linked_list_node));
 
-int remove_item_by_value(linked_list_node **head, int value_to_remove) {}
+    head->value = 111;
+    head->next = NULL;
+
+    push(head, 156);
+    push(head, 122);
+    unshift(&head, 10);
+    shift(&head);
+    pop(head);
+
+    print_linked_list(head);
+
+    return EXIT_SUCCESS;
+}
