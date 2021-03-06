@@ -2,9 +2,15 @@
 
 Implementations of some data-structures, only for study purposes, enjoy.
 
-## How to run (Unix)
+## Data Structures Covered
+
+- Array
+- Linked List
+
+## How to run (with Bash)
+
 ```bash
-$ bash execute.sh
+bash execute.sh
 ```
 
 ----------
