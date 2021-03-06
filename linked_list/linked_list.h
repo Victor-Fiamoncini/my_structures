@@ -1,18 +1,18 @@
-struct int_value_node
+struct IntNode
 {
     int value;
-    struct int_value_node *next;
+    struct IntNode *next;
 };
 
-typedef struct int_value_node linked_list_node;
+typedef struct IntNode Node;
 
-void print_linked_list(linked_list_node *head);
+void printList(Node *head);
 
-void push(linked_list_node *head, int value_to_add);
+void push(Node *head, int valueToAdd);
 
-void unshift(linked_list_node **head, int value_to_add);
+void unshift(Node **head, int valueToAdd);
 
-int shift(linked_list_node **head);
+int shift(Node **head);
 
-int pop(linked_list_node *head);
+int pop(Node *head);
 

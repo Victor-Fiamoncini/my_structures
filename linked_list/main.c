@@ -3,34 +3,34 @@
 
 #include "linked_list.h"
 
-void print_linked_list(linked_list_node *head)
+void printList(Node *head)
 {
-    linked_list_node *current = head;
+    Node *currentNode = head;
 
-    while (current != NULL)
+    while (currentNode != NULL)
     {
-        printf("%d\n", current->value);
-        current = current->next;
+        printf("%d\n", currentNode->value);
+        currentNode = currentNode->next;
     }
 }
 
-void push(linked_list_node *head, int value_to_add)
+void push(Node *head, int value_to_add)
 {
-    linked_list_node *current = head;
+    Node *currentNode = head;
 
-    while (current->next != NULL)
+    while (currentNode->next != NULL)
     {
-        current = current->next;
+        currentNode = currentNode->next;
     }
 
-    current->next = malloc(sizeof(linked_list_node));
-    current->next->value = value_to_add;
-    current->next->next = NULL;
+    currentNode->next = malloc(sizeof(Node));
+    currentNode->next->value = value_to_add;
+    currentNode->next->next = NULL;
 }
 
-void unshift(linked_list_node **head, int value_to_add)
+void unshift(Node **head, int value_to_add)
 {
-    linked_list_node *new_item = malloc(sizeof(linked_list_node));
+    Node *new_item = malloc(sizeof(Node));
 
     new_item->value = value_to_add;
     new_item->next = *head;
@@ -39,12 +39,12 @@ void unshift(linked_list_node **head, int value_to_add)
 }
 
 
-int shift(linked_list_node **head)
+int shift(Node **head)
 {
     if (*head == NULL)
         return 1;
 
-    linked_list_node *next_item = (*head)->next;
+    Node *next_item = (*head)->next;
 
     free(*head);
 
@@ -53,7 +53,7 @@ int shift(linked_list_node **head)
     return 0;
 }
 
-int pop(linked_list_node *head)
+int pop(Node *head)
 {
     if (head->next == NULL)
     {
@@ -61,25 +61,22 @@ int pop(linked_list_node *head)
         return 0;
     }
 
-    linked_list_node *current = head;
+    Node *currentNode = head;
 
-    while (current->next->next != NULL)
+    while (currentNode->next->next != NULL)
     {
-        current = current->next;
+        currentNode = currentNode->next;
     }
 
-    free(current->next);
-    current->next = NULL;
+    free(currentNode->next);
+    currentNode->next = NULL;
 
     return 0;
 }
 
 int main()
 {
-    linked_list_node *head = malloc(sizeof(linked_list_node));
-
-    head->value = 111;
-    head->next = NULL;
+    Node *head = malloc(sizeof(Node));
 
     push(head, 156);
     push(head, 122);
@@ -87,7 +84,7 @@ int main()
     shift(&head);
     pop(head);
 
-    print_linked_list(head);
+    printList(head);
 
     return EXIT_SUCCESS;
 }
