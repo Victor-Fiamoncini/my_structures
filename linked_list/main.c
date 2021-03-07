@@ -3,6 +3,12 @@
 
 #include "linked_list.h"
 
+enum ReturnStatus
+{
+  SUCCESS = 1,
+  FAILURE = 0,
+};
+
 void printList(Node *head)
 {
   Node *currentNode = head;
@@ -42,7 +48,7 @@ void unshift(Node **head, int valueToAdd)
 int shift(Node **head)
 {
   if (*head == NULL)
-    return 1;
+    return FAILURE;
 
   Node *nextItem = (*head)->next;
 
@@ -50,7 +56,7 @@ int shift(Node **head)
 
   *head = nextItem;
 
-  return 0;
+  return SUCCESS;
 }
 
 int pop(Node *head)
@@ -58,7 +64,7 @@ int pop(Node *head)
   if (head->next == NULL)
   {
     free(head);
-    return 0;
+    return SUCCESS;
   }
 
   Node *currentNode = head;
@@ -71,7 +77,7 @@ int pop(Node *head)
   free(currentNode->next);
   currentNode->next = NULL;
 
-  return 0;
+  return SUCCESS;
 }
 
 int main()
