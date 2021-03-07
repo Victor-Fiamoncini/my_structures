@@ -1,13 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ARRAY_LENGTH 5
+
+void printArray(int (*array)[ARRAY_LENGTH])
+{
+  for (int i = 0; i < ARRAY_LENGTH; i++)
+  {
+    printf("Age stored in index %i is %i\n", i, (*array)[i]);
+  }
+}
+
+void changeValue(int (*array)[ARRAY_LENGTH], int indexToAdd, int valueToAdd)
+{
+  (*array)[indexToAdd] = valueToAdd;
+}
+
 int main()
 {
-    int ages[] = {13, 24, 54, 33, 81};
-    int agesLength =  sizeof(ages) / sizeof(int);
+  int ages[ARRAY_LENGTH] = {13, 24, 54, 33, 81};
 
-    for (int i = 0; i < agesLength; i++)
-        printf("Age stored in index %i == %i\n", i, ages[i]);
+  changeValue(&ages, 2, 62);
+  changeValue(&ages, 3, 4);
 
-    return EXIT_SUCCESS;
+  printArray(&ages);
+
+  return EXIT_SUCCESS;
 }
