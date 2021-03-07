@@ -10,6 +10,5 @@ int main()
 
     // *stack.elements = {12, 34, 58, 87};
 
-
     return EXIT_SUCCESS;
 }

@@ -5,86 +5,86 @@
 
 void printList(Node *head)
 {
-    Node *currentNode = head;
+  Node *currentNode = head;
 
-    while (currentNode != NULL)
-    {
-        printf("%d\n", currentNode->value);
-        currentNode = currentNode->next;
-    }
+  while (currentNode != NULL)
+  {
+    printf("%d\n", currentNode->value);
+    currentNode = currentNode->next;
+  }
 }
 
-void push(Node *head, int value_to_add)
+void push(Node *head, int valueToAdd)
 {
-    Node *currentNode = head;
+  Node *currentNode = head;
 
-    while (currentNode->next != NULL)
-    {
-        currentNode = currentNode->next;
-    }
+  while (currentNode->next != NULL)
+  {
+    currentNode = currentNode->next;
+  }
 
-    currentNode->next = malloc(sizeof(Node));
-    currentNode->next->value = value_to_add;
-    currentNode->next->next = NULL;
+  currentNode->next = malloc(sizeof(Node));
+  currentNode->next->value = valueToAdd;
+  currentNode->next->next = NULL;
 }
 
-void unshift(Node **head, int value_to_add)
+void unshift(Node **head, int valueToAdd)
 {
-    Node *new_item = malloc(sizeof(Node));
+  Node *newItem = malloc(sizeof(Node));
 
-    new_item->value = value_to_add;
-    new_item->next = *head;
+  newItem->value = valueToAdd;
+  newItem->next = *head;
 
-    *head = new_item;
+  *head = newItem;
 }
 
 
 int shift(Node **head)
 {
-    if (*head == NULL)
-        return 1;
+  if (*head == NULL)
+    return 1;
 
-    Node *next_item = (*head)->next;
+  Node *nextItem = (*head)->next;
 
-    free(*head);
+  free(*head);
 
-    *head = next_item;
+  *head = nextItem;
 
-    return 0;
+  return 0;
 }
 
 int pop(Node *head)
 {
-    if (head->next == NULL)
-    {
-        free(head);
-        return 0;
-    }
-
-    Node *currentNode = head;
-
-    while (currentNode->next->next != NULL)
-    {
-        currentNode = currentNode->next;
-    }
-
-    free(currentNode->next);
-    currentNode->next = NULL;
-
+  if (head->next == NULL)
+  {
+    free(head);
     return 0;
+  }
+
+  Node *currentNode = head;
+
+  while (currentNode->next->next != NULL)
+  {
+    currentNode = currentNode->next;
+  }
+
+  free(currentNode->next);
+  currentNode->next = NULL;
+
+  return 0;
 }
 
 int main()
 {
-    Node *head = malloc(sizeof(Node));
+  Node *head = malloc(sizeof(Node));
 
-    push(head, 156);
-    push(head, 122);
-    unshift(&head, 10);
-    shift(&head);
-    pop(head);
+  push(head, 156);
+  push(head, 122);
+  unshift(&head, 10);
+  shift(&head);
+  pop(head);
 
-    printList(head);
+  printList(head);
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
