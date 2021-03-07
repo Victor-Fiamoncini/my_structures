@@ -13,14 +13,6 @@ enum ReturnStatus
 int ages[STACK_LENGTH];
 int top = EMPTY;
 
-void printStack()
-{
-  for (int i = 0; i < STACK_LENGTH; i++)
-  {
-    printf("Age stored in index %i is %i\n", i, ages[i]);
-  }
-}
-
 int isEmpty()
 {
   if (top == EMPTY) return SUCCESS;
@@ -30,49 +22,66 @@ int isEmpty()
 
 int isFull()
 {
-  if (top == EMPTY) return SUCCESS;
+  if (top == STACK_LENGTH) return SUCCESS;
 
   return FAILURE;
 }
 
-
 int peek()
 {
-  return ages[top];
+  if (!isEmpty())
+  {
+    return ages[top];
+  }
 }
 
 int push(int value)
 {
-  if (top >= STACK_LENGTH - 1) return FAILURE;
-
-  top++;
-  ages[top] = value;
-
-  return SUCCESS;
+  if (!isFull())
+  {
+    top++;
+    ages[top] = value;
+  }
+  else
+  {
+    printf("Stack is full");
+  }
 }
 
 int pop()
 {
   if (!isEmpty())
   {
+    int topElement = peek();
+    top--;
 
+    return topElement;
   }
-
-  return FAILURE;
+  else
+  {
+    printf("Stack is empty");
+  }
 }
 
 int main()
 {
   push(10);
-  push(10);
-  push(10);
-  push(10);
-  push(10);
+  push(11);
+  push(12);
+  push(13);
 
   pop();
   pop();
+  pop();
+  pop();
+  pop();
 
-  printStack();
+  while(!isEmpty())
+  {
+    int element = pop();
+
+    printf("%d\n", element);
+  }
 
   return EXIT_SUCCESS;
 }

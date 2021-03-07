@@ -6,6 +6,7 @@ Implementations of some data-structures, only for study purposes, enjoy.
 
 - Array
 - Linked List
+- Stack
 
 ## How to run (with Bash)
 

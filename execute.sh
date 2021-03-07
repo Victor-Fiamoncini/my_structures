@@ -1,6 +1,6 @@
 #/bin/bash
 
-read -p "Enter a script to execute (array, stack, queue...): " FOLDER_NAME
+read -p "Enter a script to execute (array, stack, linked_list...): " FOLDER_NAME
 
 if
   [ $FOLDER_NAME == "array" ] ||
