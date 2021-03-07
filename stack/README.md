@@ -6,10 +6,10 @@
 - Insertion and deletion takes place from the top
 - Eg: stack of plates, chairs, etc
 - Major operations:
-    - push(element) - used to insert element at top
-    - pop() - removes the top element
-    - is_empty() - returns true if stack is empty
-    - peek() - get the top element
+  - push(element) - used to insert element at top
+  - pop() - removes the top element
+  - isEmpty() - returns true if stack is empty
+  - peek() - get the top element
 - All operations works in constant time i.e, O(1)
 
 ## Advantages

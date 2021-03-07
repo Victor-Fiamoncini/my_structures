@@ -1,7 +1,7 @@
 struct IntNode
 {
-    int value;
-    struct IntNode *next;
+  int value;
+  struct IntNode *next;
 };
 
 typedef struct IntNode Node;
@@ -15,4 +15,3 @@ void unshift(Node **head, int valueToAdd);
 int shift(Node **head);
 
 int pop(Node *head);
-
