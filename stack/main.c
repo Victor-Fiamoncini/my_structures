@@ -1,46 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STACK_LENGTH 5
+#define EMPTY -1
+
+struct IStack
+{
+  int values[STACK_LENGTH];
+  int top;
+};
+
+typedef struct IStack Stack;
+
 enum ReturnStatus
 {
   SUCCESS = 1,
   FAILURE = 0,
 };
 
-#define STACK_LENGTH 5
-#define EMPTY (-1)
-
-int ages[STACK_LENGTH];
-int top = EMPTY;
-
-int isEmpty()
+int isEmpty(Stack *this)
 {
-  if (top == EMPTY) return SUCCESS;
+  if (this->top == EMPTY)
+    return SUCCESS;
 
   return FAILURE;
 }
 
-int isFull()
+int isFull(Stack *this)
 {
-  if (top == STACK_LENGTH) return SUCCESS;
+  if (this->top == STACK_LENGTH)
+    return SUCCESS;
 
   return FAILURE;
 }
 
-int peek()
+int peek(Stack *this)
 {
-  if (!isEmpty())
-  {
-    return ages[top];
-  }
+  if (!isEmpty(this))
+    return this->values[this->top];
 }
 
-int push(int value)
+int push(Stack *this, int value)
 {
-  if (!isFull())
+  if (!isFull(this))
   {
-    top++;
-    ages[top] = value;
+    this->top++;
+    this->values[this->top] = value;
   }
   else
   {
@@ -48,12 +53,12 @@ int push(int value)
   }
 }
 
-int pop()
+int pop(Stack *this)
 {
-  if (!isEmpty())
+  if (!isEmpty(this))
   {
-    int topElement = peek();
-    top--;
+    int topElement = peek(this);
+    this->top--;
 
     return topElement;
   }
@@ -63,22 +68,31 @@ int pop()
   }
 }
 
+Stack *makeNewStack()
+{
+  Stack *this;
+  this = malloc(sizeof(Stack));
+  this->top = EMPTY;
+
+  return this;
+}
+
 int main()
 {
-  push(10);
-  push(11);
-  push(12);
-  push(13);
+  Stack *this;
+  this = makeNewStack();
 
-  pop();
-  pop();
-  pop();
-  pop();
-  pop();
+  push(this, 10);
+  push(this, 11);
+  push(this, 12);
+  push(this, 13);
+  pop(this);
+  pop(this);
+  push(this, 11);
 
-  while(!isEmpty())
+  while (!isEmpty(this))
   {
-    int element = pop();
+    int element = pop(this);
 
     printf("%d\n", element);
   }
