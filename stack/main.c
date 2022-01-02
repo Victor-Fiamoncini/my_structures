@@ -1,26 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STACK_LENGTH 5
-#define EMPTY -1
-
-struct IStack
-{
-  int values[STACK_LENGTH];
-  int top;
-};
-
-typedef struct IStack Stack;
-
-enum ReturnStatus
-{
-  SUCCESS = 1,
-  FAILURE = 0,
-};
+#include "_stack.h"
 
 int isEmpty(Stack *this)
 {
-  if (this->top == EMPTY)
+  if (this->top == STACK_EMPTY)
     return SUCCESS;
 
   return FAILURE;
@@ -40,17 +25,17 @@ int peek(Stack *this)
     return this->values[this->top];
 }
 
-int push(Stack *this, int value)
+void push(Stack *this, int value)
 {
   if (!isFull(this))
   {
     this->top++;
     this->values[this->top] = value;
+
+    return;
   }
-  else
-  {
-    printf("Stack is full");
-  }
+
+  printf("Stack is full");
 }
 
 int pop(Stack *this)
@@ -62,25 +47,22 @@ int pop(Stack *this)
 
     return topElement;
   }
-  else
-  {
-    printf("Stack is empty");
-  }
+
+  printf("Stack is empty");
 }
 
-Stack *makeNewStack()
+Stack *newStack()
 {
   Stack *this;
   this = malloc(sizeof(Stack));
-  this->top = EMPTY;
+  this->top = STACK_EMPTY;
 
   return this;
 }
 
 int main()
 {
-  Stack *this;
-  this = makeNewStack();
+  Stack *this = newStack();
 
   push(this, 10);
   push(this, 11);
@@ -94,7 +76,7 @@ int main()
   {
     int element = pop(this);
 
-    printf("%d\n", element);
+    printf("Stack element: %d\n", element);
   }
 
   return EXIT_SUCCESS;
