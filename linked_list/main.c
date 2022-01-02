@@ -1,96 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "linked_list.h"
+#include "_linked_list.h"
 
-enum ReturnStatus
+void push(LinkedList *this, int valueToAdd)
 {
-  SUCCESS = 1,
-  FAILURE = 0,
-};
+  LinkedList *currentListNode = this;
 
-void printList(Node *head)
-{
-  Node *currentNode = head;
+  while (currentListNode->next != NULL)
+    currentListNode = currentListNode->next;
 
-  while (currentNode != NULL)
-  {
-    printf("%d\n", currentNode->value);
-    currentNode = currentNode->next;
-  }
+  currentListNode->next = malloc(sizeof(LinkedList));
+  currentListNode->next->value = valueToAdd;
+  currentListNode->next->next = NULL;
 }
 
-void push(Node *head, int valueToAdd)
+void unshift(LinkedList **this, int valueToAdd)
 {
-  Node *currentNode = head;
+  LinkedList *newLinkedList = malloc(sizeof(LinkedList));
 
-  while (currentNode->next != NULL)
-  {
-    currentNode = currentNode->next;
-  }
+  newLinkedList->value = valueToAdd;
+  newLinkedList->next = *this;
 
-  currentNode->next = malloc(sizeof(Node));
-  currentNode->next->value = valueToAdd;
-  currentNode->next->next = NULL;
+  *this = newLinkedList;
 }
 
-void unshift(Node **head, int valueToAdd)
+int shift(LinkedList **this)
 {
-  Node *newItem = malloc(sizeof(Node));
-
-  newItem->value = valueToAdd;
-  newItem->next = *head;
-
-  *head = newItem;
-}
-
-
-int shift(Node **head)
-{
-  if (*head == NULL)
+  if (*this == NULL)
     return FAILURE;
 
-  Node *nextItem = (*head)->next;
+  LinkedList *nextItem = (*this)->next;
 
-  free(*head);
+  free(*this);
 
-  *head = nextItem;
+  *this = nextItem;
 
   return SUCCESS;
 }
 
-int pop(Node *head)
+int pop(LinkedList *this)
 {
-  if (head->next == NULL)
+  if (this->next == NULL)
   {
-    free(head);
+    free(this);
     return SUCCESS;
   }
 
-  Node *currentNode = head;
+  LinkedList *currentListNode = this;
 
-  while (currentNode->next->next != NULL)
-  {
-    currentNode = currentNode->next;
-  }
+  while (currentListNode->next->next != NULL)
+    currentListNode = currentListNode->next;
 
-  free(currentNode->next);
-  currentNode->next = NULL;
+  free(currentListNode->next);
+  currentListNode->next = NULL;
 
   return SUCCESS;
 }
 
 int main()
 {
-  Node *head = malloc(sizeof(Node));
+  LinkedList *this = malloc(sizeof(LinkedList));
 
-  push(head, 156);
-  push(head, 122);
-  unshift(&head, 10);
-  shift(&head);
-  pop(head);
+  push(this, 156);
+  push(this, 232);
+  push(this, 444);
+  unshift(&this, 10);
+  pop(this);
+  shift(&this);
 
-  printList(head);
+  while (this != NULL)
+  {
+    printf("%d\n", this->value);
+    this = this->next;
+  }
 
   return EXIT_SUCCESS;
 }

@@ -1,13 +1,13 @@
 #define STACK_LENGTH 5
 #define STACK_EMPTY -1
 
-struct IStack
+struct IntStack
 {
   int values[STACK_LENGTH];
   int top;
 };
 
-typedef struct IStack Stack;
+typedef struct IntStack Stack;
 
 enum ReturnStatus
 {
